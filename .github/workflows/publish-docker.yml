@@ -22,15 +22,6 @@ jobs:
             jq -r .prerelease)
           echo "IS_PRERELEASE=$IS_PRERELEASE" >> $GITHUB_ENV  
           
-      # 构建所有的docker
-      - name: build dockers
-        env:
-          IS_PRE: ${{env.IS_PRERELEASE}}
-          DOCKER_SERVER: ${{secrets.DOCKER_SERVER}}
-          DOCKER_USER: ${{secrets.DOCKER_USER}}
-          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-          PRODUCTION_SOURCE_MAP: ${{secrets.PRODUCTION_SOURCE_MAP}}
-        run: bash ./scripts/build.sh
 
       # 构建试用docker
       - name: build free-docker
